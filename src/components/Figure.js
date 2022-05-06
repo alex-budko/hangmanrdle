@@ -1,5 +1,6 @@
 import React from 'react'
 
+//svg figure imported into website
 const Figure = () => {
   return (
     <svg height="250" width="200" class="figure-container">
