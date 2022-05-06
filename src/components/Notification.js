@@ -1,5 +1,6 @@
 import React from 'react'
 
+//notification popup for when a letter has been previously entered
 const Notification = () => {
   return (
     <div className="notification-container" id="notification-container">

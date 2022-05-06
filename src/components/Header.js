@@ -1,5 +1,6 @@
 import React from 'react'
 
+//basic styling for the header 
 const Header = () => {
   return (
     <>
