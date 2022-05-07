@@ -1,5 +1,5 @@
 import './App.css';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Header from './components/Header.js'
 import Figure from './components/Figure.js'
 import WrongLetters from './components/WrongLetters.js'
@@ -13,12 +13,40 @@ function App() {
   const [correctLetters, setCorrectLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
 
+  useEffect(() => {
+    const handleKeyDown = event => {
+      const {key, keyCode} = event
+      if (playable) {
+        if (keyCode >= 65 && keyCode <= 90) {
+          const letter = key.toLowerCase();
+    
+          if (selectedWord.includes(letter)) {
+            if (!correctLetters.includes(letter)) {
+              setCorrectLetters(currentLetters => [...currentLetters, letter])
+            } else {
+            //  showNotification();
+            }
+          } else {
+            if (!wrongLetters.includes(letter)) {
+              setWrongLetters(currentLetters => [...wrongLetters, letter])
+            } else {
+            //  showNotification();
+            }
+          }
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [correctLetters, wrongLetters, playable])
+
   return (
     <>
       <Header />
       <div className='game-container'>
         <Figure />
-        <WrongLetters />
+        <WrongLetters wrongLetters={wrongLetters} />
         <Word selectedWord={selectedWord} correctLetters={correctLetters} />
       </div>
     </>
