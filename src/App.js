@@ -16,7 +16,7 @@ function App() {
   const [playable, setPlayable] = useState(true)
   const [correctLetters, setCorrectLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
-  const [showNotification, setShowNotification] = useState([])
+  const [showNotification, setShowNotification] = useState(false)
 
 
   useEffect(() => {
@@ -54,9 +54,9 @@ function App() {
         <Figure wrongLetters={wrongLetters}/>
         <WrongLetters wrongLetters={wrongLetters} />
         <Word selectedWord={selectedWord} correctLetters={correctLetters} />
-        <Popup />
-        <Notification showNotification={showNotification} />
       </div>
+      <Popup />
+      <Notification showNotification={showNotification} />
     </>
   );
 }
